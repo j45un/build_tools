@@ -10,11 +10,9 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: mkdir out
-      run: docker build --tag onlyoffice-document-editors-builder .
-      run: docker run -v $PWD/out:/build_tools/out onlyoffice-document-editors-builder
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
